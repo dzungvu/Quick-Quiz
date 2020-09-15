@@ -10,16 +10,21 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          HomeTopView(),
-          HomeCenterView(
-            listQuizItem: List<QuizItem>(),
-          ),
-          HomeBottomView(),
-        ],
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            HomeTopView(),
+            Expanded(
+              flex: 1,
+              child: HomeCenterView(
+                listQuizItem: List<QuizItem>(),
+              ),
+            ),
+            HomeBottomView(),
+          ],
+        ),
       ),
     );
   }

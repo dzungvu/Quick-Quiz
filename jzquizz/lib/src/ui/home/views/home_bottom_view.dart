@@ -8,6 +8,7 @@ class HomeBottomView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ButtonTheme(
       minWidth: double.infinity,
+      height: 150.0,
       child: RaisedButton(
         onPressed: () => {},
         child: Row(
@@ -28,7 +29,7 @@ class HomeBottomView extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'MULTI-SHOT QUESTIONS',
+                    'MULTI-SHOT',
                     style: TextStyle(
                       color: AppColors.black,
                       fontSize: Dimens.itemTextTitle,
@@ -39,7 +40,8 @@ class HomeBottomView extends StatelessWidget {
             ),
             Expanded(
               flex: 1,
-              child: Center(
+              child: ButtonTheme(
+                height: 50,
                 child: RaisedButton(
                   color: AppColors.black,
                   onPressed: () => {},
