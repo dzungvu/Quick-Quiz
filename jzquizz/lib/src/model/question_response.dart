@@ -21,4 +21,7 @@ class QuestionResponse {
     @required this.result,
     @required this.questions,
   });
+
+  factory QuestionResponse.fromJson(Map<String, dynamic> json) => _$QuestionResponseFromJson(json);
+  Map<String, dynamic> toJson() => _$QuestionResponseToJson(this);
 }
