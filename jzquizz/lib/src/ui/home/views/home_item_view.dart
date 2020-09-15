@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jzquizz/res/app_colors.dart';
 import 'package:jzquizz/res/dimens.dart';
-import 'package:jzquizz/src/model/home_item.dart';
+import 'package:jzquizz/src/entities/home_item.dart';
 
 class HomeItemView extends StatelessWidget {
   final HomeItem data;

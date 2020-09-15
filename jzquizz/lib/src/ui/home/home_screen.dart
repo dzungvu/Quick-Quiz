@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:jzquizz/src/model/quiz_item.dart';
+import 'package:jzquizz/src/entities/quiz_item.dart';
 import 'package:jzquizz/src/ui/home/views/home_bottom_view.dart';
 import 'package:jzquizz/src/ui/home/views/home_center_view.dart';
 import 'package:jzquizz/src/ui/home/views/homme_top_view.dart';
 
 class HomeScreen extends StatelessWidget {
-  static const routeName = 'homem_screen';
+  static const routeName = '/homem_screen';
 
   @override
   Widget build(BuildContext context) {

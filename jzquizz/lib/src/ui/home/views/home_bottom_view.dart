@@ -1,7 +1,9 @@
 //Get extra score with SERIES => PLAY
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:jzquizz/res/app_colors.dart';
 import 'package:jzquizz/res/dimens.dart';
+import 'package:jzquizz/src/ui/multi_shot/multi_shot_screen.dart';
 
 class HomeBottomView extends StatelessWidget {
   @override
@@ -10,7 +12,18 @@ class HomeBottomView extends StatelessWidget {
       minWidth: double.infinity,
       height: 150.0,
       child: RaisedButton(
-        onPressed: () => {},
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(Dimens.cornerMedium),
+            topRight: Radius.circular(
+              Dimens.cornerMedium,
+            ),
+          ),
+        ),
+        onPressed: () => {
+          Get.toNamed(MultiShotScreen.routeName),
+          // Get.toNamed(MultiShotScreen.routeName, arguments: 'send data')
+        },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,

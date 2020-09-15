@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jzquizz/src/model/question.dart';
+import 'package:jzquizz/src/entities/question.dart';
 
 class QuizItem {
   final String category;

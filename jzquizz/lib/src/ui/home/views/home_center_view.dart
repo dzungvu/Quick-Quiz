@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jzquizz/src/model/home_item.dart';
-import 'package:jzquizz/src/model/quiz_item.dart';
+import 'package:jzquizz/src/entities/home_item.dart';
+import 'package:jzquizz/src/entities/quiz_item.dart';
 import 'package:jzquizz/src/ui/home/views/home_item_view.dart';
 
 class HomeCenterView extends StatelessWidget {
