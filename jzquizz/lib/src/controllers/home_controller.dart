@@ -4,7 +4,12 @@ import 'package:jzquizz/src/network/models/home_model.dart';
 
 class HomeController extends GetxController {
   var _model = HomeModel();
-  var questionResponse = QuestionResponse().obs;
+  var questionResponse = QuestionResponse(
+    status: '0',
+    statusCode: 0,
+    result: 0,
+    listQuiz: List.empty()
+  ).obs;
 
   @override
   void onInit() async {

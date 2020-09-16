@@ -9,11 +9,11 @@ part of 'question_response.dart';
 QuestionResponse _$QuestionResponseFromJson(Map<String, dynamic> json) {
   return QuestionResponse(
     status: json['status'] as String,
-    statusCode: json['statusCode'] as String,
+    statusCode: json['statusCode'] as int,
     result: json['result'] as int,
-    questions: (json['data'] as List)
+    listQuiz: (json['data'] as List)
         ?.map((e) =>
-            e == null ? null : Question.fromJson(e as Map<String, dynamic>))
+            e == null ? null : QuizItem.fromJson(e as Map<String, dynamic>))
         ?.toList(),
   );
 }
@@ -23,5 +23,5 @@ Map<String, dynamic> _$QuestionResponseToJson(QuestionResponse instance) =>
       'status': instance.status,
       'statusCode': instance.statusCode,
       'result': instance.result,
-      'data': instance.questions,
+      'data': instance.listQuiz,
     };

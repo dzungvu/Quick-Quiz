@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:jzquizz/src/entities/image_response.dart';
 
 part 'question.g.dart';
 
@@ -11,10 +12,10 @@ class Question {
   final String question;
   @JsonKey(name: 'answers')
   final List<String> answers;
-  @JsonKey(name: 'correctAnswer')
+  @JsonKey(name: 'correct_answer')
   final String correctAnswer;
   @JsonKey(name: 'img')
-  final String img;
+  final ImageResponse img;
   @JsonKey(name: 'explaination')
   final String explaination;
 

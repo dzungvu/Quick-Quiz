@@ -15,7 +15,7 @@ class HomeCenterView extends StatelessWidget {
       child: ListView.builder(
         itemBuilder: (context, index) => HomeItemView(
           data: HomeItem(
-            img: listQuizItem[index].questions[0].img,
+            img: listQuizItem[index].questions[0].img.url,
             category: listQuizItem[index].category,
             title: listQuizItem[index].title,
             source: listQuizItem[index].source,

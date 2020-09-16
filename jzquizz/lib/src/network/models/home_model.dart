@@ -9,6 +9,7 @@ class HomeModel {
     final response = await _questionRepository.fetchQuestionList();
     if (response.statusCode == 200) {
       Map questionResponseMap = jsonDecode(response.body);
+      print(questionResponseMap);
       var result = QuestionResponse.fromJson(questionResponseMap);
       return result;
     } else {

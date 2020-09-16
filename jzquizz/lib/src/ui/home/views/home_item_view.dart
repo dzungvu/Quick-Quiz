@@ -15,14 +15,19 @@ class HomeItemView extends StatelessWidget {
       children: <Widget>[
         Expanded(
           flex: 1,
-          child: ClipRRect(
-            borderRadius: BorderRadius.all(
-              Radius.circular(
-                Dimens.cornerMedium,
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(
+                Radius.circular(
+                  Dimens.cornerMedium,
+                ),
               ),
-            ),
-            child: Image.network(
-              data.img,
+              child: Image.network(
+                data.img,
+                fit: BoxFit.cover,
+                width: 300,
+              ),
             ),
           ),
         ),

@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:jzquizz/src/entities/question.dart';
+import 'package:jzquizz/src/entities/quiz_item.dart';
 
 part 'question_response.g.dart';
 
@@ -8,17 +8,17 @@ class QuestionResponse {
   @JsonKey(name: 'status')
   String status;
   @JsonKey(name: 'statusCode')
-  String statusCode;
+  int statusCode;
   @JsonKey(name: 'result')
   int result;
   @JsonKey(name: 'data')
-  List<Question> questions;
+  List<QuizItem> listQuiz = List.empty();
 
   QuestionResponse({
     this.status,
     this.statusCode,
     this.result,
-    this.questions,
+    this.listQuiz,
   });
 
   factory QuestionResponse.fromJson(Map<String, dynamic> json) =>
