@@ -8,59 +8,61 @@ import 'package:jzquizz/src/ui/multi_shot/multi_shot_screen.dart';
 class HomeBottomView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ButtonTheme(
-      minWidth: double.infinity,
-      height: 150.0,
-      child: RaisedButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(Dimens.cornerMedium),
-            topRight: Radius.circular(
-              Dimens.cornerMedium,
+    return Container(
+      margin: EdgeInsets.all(
+        Dimens.marginCommon,
+      ),
+      child: ButtonTheme(
+        minWidth: double.infinity,
+        height: 150.0,
+        child: RaisedButton(
+          color: AppColors.black,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(
+                Dimens.borderInputLarge,
+              ),
             ),
           ),
-        ),
-        onPressed: () => {
-          Get.toNamed(MultiShotScreen.routeName),
-          // Get.toNamed(MultiShotScreen.routeName, arguments: 'send data')
-        },
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              flex: 1,
-              child: Column(
+          onPressed: () => {
+            Get.toNamed(MultiShotScreen.routeName),
+            // Get.toNamed(MultiShotScreen.routeName, arguments: 'send data')
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text(
                     'Get extra score with',
                     style: TextStyle(
-                      color: AppColors.black,
+                      color: AppColors.white,
                       fontSize: Dimens.itemTextSubTitle,
                     ),
                   ),
                   Text(
                     'MULTI-SHOT',
                     style: TextStyle(
-                      color: AppColors.black,
+                      color: AppColors.white,
                       fontSize: Dimens.itemTextTitle,
                     ),
                   ),
                 ],
               ),
-            ),
-            Expanded(
-              flex: 1,
-              child: ButtonTheme(
-                height: 50,
+              SizedBox(
+                width: Dimens.marginGroupView,
+              ),
+              ButtonTheme(
+                height: 40,
                 child: RaisedButton(
-                  color: AppColors.black,
+                  color: AppColors.white,
                   onPressed: () => {},
                   child: Text(
                     'Play',
-                    style: TextStyle(color: AppColors.white),
+                    style: TextStyle(color: AppColors.black),
                   ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(
@@ -71,8 +73,8 @@ class HomeBottomView extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
