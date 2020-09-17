@@ -3,6 +3,7 @@ import 'package:get/route_manager.dart';
 import 'package:get/state_manager.dart';
 import 'package:jzquizz/res/app_colors.dart';
 import 'package:jzquizz/res/dimens.dart';
+import 'package:get/get.dart';
 import 'package:jzquizz/src/controllers/quiz_controller.dart';
 import 'package:jzquizz/src/entities/question.dart';
 
@@ -10,20 +11,12 @@ class QuizScreen extends StatelessWidget {
   static const routeName = '/quiz_screen';
   @override
   Widget build(BuildContext context) {
-    QuizController controller;
-    Get.arguments == null
-        ? {
-            Get.snackbar('Something went wrong!',
-                'Can not get quiz, please try again later'),
-          }
-        : {
-            controller = Get.put(
-              QuizController(
-                listOfListQuestion:
-                    (Get.arguments as QuizScreenData).listOfListQuestion,
-              ),
-            ),
-          };
+    final QuizController controller = Get.put(
+      QuizController(
+        listOfListQuestion:
+            (Get.arguments as QuizScreenData).listOfListQuestion,
+      ),
+    );
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.black,
@@ -36,33 +29,52 @@ class QuizScreen extends StatelessWidget {
           onPressed: () => Get.back(),
         ),
       ),
-      body: controller == null
-          ? Center(
-              child: Text('No data, please try later'),
-            )
-          : Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Obx(() => Text(controller.currentQuestion == null
-                      ? "Init with null"
-                      : controller.currentQuestion.value.question)),
-                  Obx(
-                    () => Text(
-                      controller.currentQuestionIndex == null
-                          ? "Init with null"
-                          : controller.currentQuestionIndex.value.toString(),
-                    ),
+      body: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: Dimens.marginCommon,
+            ),
+            Obx(
+              () => Center(
+                child: Text(
+                  controller.currentQuestion.value.question,
+                  style: TextStyle(
+                    fontSize: Dimens.itemTextTitle,
                   ),
-                  RaisedButton(
-                    onPressed: () => {
-                      controller.nextQuiz(),
-                    },
-                  )
-                ],
+                  textAlign: TextAlign.center,
+                ),
               ),
             ),
+            SizedBox(
+              height: Dimens.marginGroupView,
+            ),
+            Obx(
+              () => Expanded(
+                flex: 1,
+                child: Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: Dimens.marginCommon,
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(
+                        Dimens.borderInputMedium,
+                      ),
+                    ),
+                    child: Image.network(
+                      controller.currentQuestion.value.img.url,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
