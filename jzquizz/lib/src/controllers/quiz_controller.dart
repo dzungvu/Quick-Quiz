@@ -17,6 +17,8 @@ class QuizController extends GetxController {
       .obs;
   RxInt currentShot = 0.obs; // only use for multi-shot quiz
 
+  RxInt screenState = 0.obs;
+
   void startQuiz() {
     if (listOfListQuestion == null) {
       return;
@@ -43,6 +45,7 @@ class QuizController extends GetxController {
 
   void _nextShot() {
     if (currentShot.value == listOfListQuestion.length - 1) {
+      screenState.value = 1; // Change screen state to change screen view
       return;
     }
     currentShot.value++;

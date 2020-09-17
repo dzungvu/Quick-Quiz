@@ -21,10 +21,21 @@ class AppColors {
   static const Color white = Colors.white;
   static final Color whiteAlPha = Colors.white.withOpacity(.80);
 
-  static const Color tagBg = Color(0xFF3F85FC);
+  static const Color blue = Color(0xFF3F85FC);
   static const Color star = Colors.yellowAccent;
   static const Color indicatorUnselected = Color(0xFF969798);
   static const Color indicatorSelected = Color(0xFFFFFFFF);
 
-  static const Color pink = Colors.pink;
+  static const Color correctAnswer = Colors.greenAccent;
+  static const Color selectAnswer = Colors.blueAccent;
+  static const Color wrongAnswer = Colors.pink;
+  static const Color holdAnswer = Colors.white30;
+  static const Color initAnswer = Colors.white;
+
+  static const Color initTextAnswer = Colors.black;
+  static const Color correctTextAnswer = Colors.white;  
+  static const Color wrongTextAnswer = Colors.white;
+  static const Color selectTextAnswer = Colors.yellowAccent;
+
+
 }

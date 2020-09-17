@@ -1,11 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:jzquizz/res/app_colors.dart';
 import 'package:jzquizz/res/dimens.dart';
+import 'package:jzquizz/src/ui/custom_views/answer_button.dart';
 
 class AnswerView extends StatelessWidget {
   final List<String> answers;
+  final String correctAnswer;
+  final Function goNext;
 
-  AnswerView({@required this.answers});
+  AnswerView({
+    @required this.answers,
+    this.correctAnswer,
+    @required this.goNext,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,29 +40,10 @@ class AnswerView extends StatelessWidget {
   }
 
   Widget _itemQuiz(String answer) {
-    return GestureDetector(
-      onTap: () => {},
-      child: Container(
-        margin: EdgeInsets.symmetric(
-          vertical: Dimens.marginSmall,
-        ),
-        padding: EdgeInsets.all(Dimens.marginCommon),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(
-            Radius.circular(
-              Dimens.borderInputMedium,
-            ),
-          ),
-          color: AppColors.white,
-        ),
-        child: Text(
-          answer,
-          style: TextStyle(
-            fontSize: Dimens.itemTextSubTitle,
-            color: AppColors.lightBlack,
-          ),
-        ),
-      ),
+    return AnswerButton(
+      answer: answer,
+      isCorrect: answer == correctAnswer,
+      goNext: goNext,
     );
   }
 }
