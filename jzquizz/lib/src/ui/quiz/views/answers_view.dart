@@ -113,18 +113,26 @@ class AnswerViewController extends GetxController {
 
       listControllerTemp.add(
         AnswerButtonController(
-            goNext: data.goNext,
-            markRightAnswer: () => {
-                  listControllerTemp[_getCorrectAnswer()].stateColor.value =
-                      AnswerButtonController.STATE_CORRECT,
-                  listControllerTemp[_getCorrectAnswer()].stateTextColor.value =
-                      AnswerButtonController.STATE_TEXT_CORRECT,
-                }),
+          goNext: data.goNext,
+          markRightAnswer: () => {
+            listControllerTemp[_getCorrectAnswer()].stateColor.value =
+                AnswerButtonController.STATE_CORRECT,
+            listControllerTemp[_getCorrectAnswer()].stateTextColor.value =
+                AnswerButtonController.STATE_TEXT_CORRECT,
+          },
+          onAnswered: _blockAllButton,
+        ),
       );
     }
 
     listButtonData.value = listButtonDataTemp;
     listController.value = listControllerTemp;
+  }
+
+  void _blockAllButton() {
+    for (int i = 0; i < data.answers.length; i++) {
+      listController.value[i].canClick = false;
+    }
   }
 
   int _getCorrectAnswer() {

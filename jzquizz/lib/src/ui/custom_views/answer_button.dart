@@ -27,10 +27,10 @@ class AnswerButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => {controller.select(data.isCorrect)},
-      child: Obx(
-        () => Container(
+    return Obx(
+      () => GestureDetector(
+        onTap: () => {controller.select(data.isCorrect)},
+        child: Container(
           width: double.infinity,
           margin: EdgeInsets.symmetric(
             vertical: Dimens.marginSmall,
@@ -60,9 +60,11 @@ class AnswerButton extends StatelessWidget {
 class AnswerButtonController extends GetxController {
   Function goNext;
   Function markRightAnswer;
+  Function onAnswered;
   AnswerButtonController({
     @required this.goNext,
     @required this.markRightAnswer,
+    @required this.onAnswered,
   });
 
   static const STATE_INIT = AppColors.initAnswer;
@@ -80,24 +82,29 @@ class AnswerButtonController extends GetxController {
   Rx<Color> stateColor = AppColors.initAnswer.obs;
   Rx<Color> stateTextColor = AppColors.initTextAnswer.obs;
 
-  void select(bool isCorrect) {
-    stateColor.value = STATE_SELECT;
-    stateTextColor.value = STATE_TEXT_SELECT;
+  bool canClick = true;
 
-    Future.delayed(
-      const Duration(seconds: 1),
-      () => {
-        if (isCorrect)
-          {
-            markCorrect(),
-          }
-        else
-          {
-            markWrong(),
-            markRightAnswer(),
-          }
-      },
-    );
+  void select(bool isCorrect) {
+    if (canClick) {
+      stateColor.value = STATE_SELECT;
+      stateTextColor.value = STATE_TEXT_SELECT;
+
+      onAnswered();
+      Future.delayed(
+        const Duration(seconds: 1),
+        () => {
+          if (isCorrect)
+            {
+              markCorrect(),
+            }
+          else
+            {
+              markWrong(),
+              markRightAnswer(),
+            }
+        },
+      );
+    }
   }
 
   void markCorrect() {
