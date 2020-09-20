@@ -10,14 +10,27 @@ import 'package:jzquizz/src/ui/quiz/views/answers_view.dart';
 
 class QuizScreen extends StatelessWidget {
   static const routeName = '/quiz_screen';
+  int totalQuestion = 0;
+  int totalPoint = 0;
+
   @override
   Widget build(BuildContext context) {
+    List<List<Question>> listData =
+        (Get.arguments as QuizScreenData).listOfListQuestion;
+
     final QuizController controller = Get.put(
       QuizController(
-        listOfListQuestion:
-            (Get.arguments as QuizScreenData).listOfListQuestion,
+        listOfListQuestion: listData,
       ),
     );
+
+    for (List<Question> item in listData) {
+      totalQuestion += item.length;
+    }
+
+    totalPoint = totalQuestion;
+    print('Total point: $totalPoint, total question: $totalQuestion');
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.black,
@@ -125,6 +138,10 @@ class QuizScreen extends StatelessWidget {
                 ),
                 Obx(
                   () => AnswerView(
+                    minusPoint: () => {
+                      totalPoint -= 1,
+                      print('Point change to $totalPoint'),
+                    },
                     data: AnswerViewData(
                       answers: controller.currentQuestion.value.answers,
                       correctAnswer:
@@ -144,7 +161,12 @@ class QuizScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'Congratulation!!! You reach the end of the Quiz!',
+                    'Congratulation!!! You\'ve reached the end of the Quiz!\nYou\'ve got $totalPoint/$totalQuestion points',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: Dimens.itemTextTitle,
+                      color: AppColors.black,
+                    ),
                   ),
                   SizedBox(
                     height: Dimens.marginCommon,

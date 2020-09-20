@@ -18,13 +18,18 @@ class AnswerViewData {
 
 class AnswerView extends StatelessWidget {
   final AnswerViewData data;
+  final Function minusPoint;
 
   AnswerViewController controller;
 
   AnswerView({
     @required this.data,
+    @required this.minusPoint,
   }) {
-    controller = AnswerViewController(data: data);
+    controller = AnswerViewController(
+      data: data,
+      minusPoint: minusPoint,
+    );
   }
 
   @override
@@ -92,6 +97,7 @@ class AnswerView extends StatelessWidget {
 ///
 class AnswerViewController extends GetxController {
   final AnswerViewData data;
+  final Function minusPoint;
 
   RxList<AnswerButtonData> listButtonData = List<AnswerButtonData>().obs;
   RxList<AnswerButtonController> listController =
@@ -99,6 +105,7 @@ class AnswerViewController extends GetxController {
 
   AnswerViewController({
     @required this.data,
+    @required this.minusPoint,
   }) {
     List<AnswerButtonData> listButtonDataTemp = List();
     List<AnswerButtonController> listControllerTemp = List();
@@ -106,7 +113,7 @@ class AnswerViewController extends GetxController {
       listButtonDataTemp.add(
         AnswerButtonData(
           answer: answer,
-          isCorrect: false,
+          isCorrect: answer == data.correctAnswer,
           doNext: data.goNext,
         ),
       );
@@ -120,7 +127,13 @@ class AnswerViewController extends GetxController {
             listControllerTemp[_getCorrectAnswer()].stateTextColor.value =
                 AnswerButtonController.STATE_TEXT_CORRECT,
           },
-          onAnswered: _blockAllButton,
+          onAnswered: (isCorrect) => {
+            if (!isCorrect)
+              {
+                minusPoint(),
+              },
+            _blockAllButton(),
+          },
         ),
       );
     }

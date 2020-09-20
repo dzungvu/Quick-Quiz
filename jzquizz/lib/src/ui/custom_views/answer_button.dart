@@ -60,7 +60,7 @@ class AnswerButton extends StatelessWidget {
 class AnswerButtonController extends GetxController {
   Function goNext;
   Function markRightAnswer;
-  Function onAnswered;
+  Function(bool isCorrect) onAnswered;
   AnswerButtonController({
     @required this.goNext,
     @required this.markRightAnswer,
@@ -89,7 +89,7 @@ class AnswerButtonController extends GetxController {
       stateColor.value = STATE_SELECT;
       stateTextColor.value = STATE_TEXT_SELECT;
 
-      onAnswered();
+      onAnswered(isCorrect);
       Future.delayed(
         const Duration(seconds: 1),
         () => {
