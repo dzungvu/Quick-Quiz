@@ -100,7 +100,7 @@ class QuizScreen extends StatelessWidget {
                   height: Dimens.marginGroupView,
                 ),
                 Expanded(
-                  flex: 6,
+                  flex: 1,
                   child: Obx(
                     () => Container(
                       margin: EdgeInsets.symmetric(
@@ -123,10 +123,9 @@ class QuizScreen extends StatelessWidget {
                 SizedBox(
                   height: Dimens.marginSmall,
                 ),
-                Expanded(
-                  flex: 4,
-                  child: Obx(
-                    () => AnswerView(
+                Obx(
+                  () => AnswerView(
+                    data: AnswerViewData(
                       answers: controller.currentQuestion.value.answers,
                       correctAnswer:
                           controller.currentQuestion.value.correctAnswer,

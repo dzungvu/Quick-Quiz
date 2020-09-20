@@ -13,6 +13,7 @@ class HomeCenterView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: double.infinity,
+        width: double.infinity,
         child: listQuizItem.length == 0
             ? Center(
                 child: Text('Loading...'),

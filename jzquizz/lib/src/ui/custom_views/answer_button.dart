@@ -4,25 +4,34 @@ import 'package:get/state_manager.dart';
 import 'package:jzquizz/res/app_colors.dart';
 import 'package:jzquizz/res/dimens.dart';
 
-class AnswerButton extends StatelessWidget {
+class AnswerButtonData {
   final String answer;
   final bool isCorrect;
-  final Function goNext;
+  final Function doNext;
 
-  AnswerButton({
+  AnswerButtonData({
     @required this.answer,
     @required this.isCorrect,
-    @required this.goNext,
+    @required this.doNext,
   });
+}
+
+class AnswerButton extends StatelessWidget {
+  final AnswerButtonData data;
+  final AnswerButtonController controller;
+
+  AnswerButton({
+    @required this.data,
+    @required this.controller,
+  });
+
   @override
   Widget build(BuildContext context) {
-    AnswerButtonController _mController = AnswerButtonController(
-      goNext: goNext,
-    );
     return GestureDetector(
-      onTap: () => {_mController.select(isCorrect)},
+      onTap: () => {controller.select(data.isCorrect)},
       child: Obx(
         () => Container(
+          width: double.infinity,
           margin: EdgeInsets.symmetric(
             vertical: Dimens.marginSmall,
           ),
@@ -33,13 +42,13 @@ class AnswerButton extends StatelessWidget {
                 Dimens.borderInputMedium,
               ),
             ),
-            color: _mController.stateColor.value,
+            color: controller.stateColor.value,
           ),
           child: Text(
-            answer,
+            data.answer,
             style: TextStyle(
               fontSize: Dimens.itemTextSubTitle,
-              color: _mController.stateTextColor.value,
+              color: controller.stateTextColor.value,
             ),
           ),
         ),
@@ -50,7 +59,11 @@ class AnswerButton extends StatelessWidget {
 
 class AnswerButtonController extends GetxController {
   Function goNext;
-  AnswerButtonController({@required this.goNext});
+  Function markRightAnswer;
+  AnswerButtonController({
+    @required this.goNext,
+    @required this.markRightAnswer,
+  });
 
   static const STATE_INIT = AppColors.initAnswer;
   static const STATE_START_HOLD = AppColors.holdAnswer;
@@ -74,7 +87,15 @@ class AnswerButtonController extends GetxController {
     Future.delayed(
       const Duration(seconds: 1),
       () => {
-        if (isCorrect) {markCorrect()} else {markWrong()}
+        if (isCorrect)
+          {
+            markCorrect(),
+          }
+        else
+          {
+            markWrong(),
+            markRightAnswer(),
+          }
       },
     );
   }
@@ -83,7 +104,9 @@ class AnswerButtonController extends GetxController {
     stateColor.value = STATE_CORRECT;
     stateTextColor.value = STATE_TEXT_CORRECT;
     Future.delayed(
-      const Duration(seconds: 1),
+      const Duration(
+        seconds: 1,
+      ),
       () => {_nextQuestion()},
     );
   }
@@ -92,7 +115,9 @@ class AnswerButtonController extends GetxController {
     stateColor.value = STATE_WRONG;
     stateTextColor.value = STATE_TEXT_WRONG;
     Future.delayed(
-      const Duration(seconds: 1),
+      const Duration(
+        seconds: 1,
+      ),
       () => {_nextQuestion()},
     );
   }
