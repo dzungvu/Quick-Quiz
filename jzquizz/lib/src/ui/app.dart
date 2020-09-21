@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:jzquizz/routes.dart';
-import 'package:jzquizz/src/ui/home/home_screen.dart';
+import 'package:jzquizz/src/ui/welcome/welcome_screen.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: HomeScreen(),
+        home: WelComeScreen(),
         getPages: pages,
       ),
     ); 

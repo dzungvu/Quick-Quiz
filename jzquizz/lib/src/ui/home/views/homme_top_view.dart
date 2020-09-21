@@ -3,6 +3,10 @@ import 'package:jzquizz/res/app_colors.dart';
 import 'package:jzquizz/res/dimens.dart';
 
 class HomeTopView extends StatelessWidget {
+  final String playerName;
+  HomeTopView({
+    @required this.playerName,
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,7 +30,7 @@ class HomeTopView extends StatelessWidget {
                   ),
                 ),
                 TextSpan(
-                  text: "GUESS",
+                  text: playerName,
                   style: TextStyle(
                     color: AppColors.black,
                     fontWeight: FontWeight.bold,
