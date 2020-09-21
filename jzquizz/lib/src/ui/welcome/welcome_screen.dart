@@ -92,17 +92,26 @@ class WelComeScreen extends StatelessWidget {
                     minWidth: double.infinity,
                     child: RaisedButton(
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                        Radius.circular(
-                          Dimens.borderInputMedium,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(
+                            Dimens.borderInputMedium,
+                          ),
                         ),
-                      )),
+                      ),
                       color: AppColors.white,
                       onPressed: () => {
-                        Get.offAndToNamed(
-                          HomeScreen.routeName,
-                          arguments: textController.text,
-                        ),
+                        if (textController.text.isEmpty)
+                          {
+                            Get.snackbar('Username is empty',
+                                'Please enter your username to continue!')
+                          }
+                        else
+                          {
+                            Get.offAndToNamed(
+                              HomeScreen.routeName,
+                              arguments: textController.text,
+                            ),
+                          }
                       },
                       child: Text(
                         'Enter',
