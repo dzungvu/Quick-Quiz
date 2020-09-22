@@ -74,6 +74,9 @@ class WelComeScreen extends StatelessWidget {
                           color: AppColors.white,
                         ),
                       ),
+                      SizedBox(
+                        height: Dimens.safeAreaSmall,
+                      ),
                       Text(
                         '*This use for display as your username',
                         style: TextStyle(

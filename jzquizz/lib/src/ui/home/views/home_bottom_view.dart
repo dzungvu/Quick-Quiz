@@ -26,7 +26,6 @@ class HomeBottomView extends StatelessWidget {
           ),
           onPressed: () => {
             Get.toNamed(MultiShotScreen.routeName),
-            // Get.toNamed(MultiShotScreen.routeName, arguments: 'send data')
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -59,7 +58,9 @@ class HomeBottomView extends StatelessWidget {
                 height: 40,
                 child: RaisedButton(
                   color: AppColors.white,
-                  onPressed: () => {},
+                  onPressed: () => {
+                    Get.toNamed(MultiShotScreen.routeName),
+                  },
                   child: Text(
                     'Play',
                     style: TextStyle(color: AppColors.black),
