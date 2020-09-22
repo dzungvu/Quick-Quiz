@@ -36,6 +36,7 @@ class AppColors {
   static const Color correctTextAnswer = Colors.white;  
   static const Color wrongTextAnswer = Colors.white;
   static const Color selectTextAnswer = Colors.yellowAccent;
+  static const Color reviewAnswer = Colors.lightGreen;
 
 
 }

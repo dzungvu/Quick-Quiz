@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 import 'package:jzquizz/src/controllers/quiz_controller.dart';
 import 'package:jzquizz/src/entities/question.dart';
 import 'package:jzquizz/src/ui/quiz/views/answers_view.dart';
+import 'package:jzquizz/src/ui/review_result/review_result_screen.dart';
+import 'package:jzquizz/src/ui/review_result/views/review_result_item.dart';
 
 class QuizScreen extends StatelessWidget {
   static const routeName = '/quiz_screen';
@@ -88,6 +90,7 @@ class QuizScreen extends StatelessWidget {
     );
   }
 
+  List<ReviewResultItemData> listToPass = List();
   Widget _quizView(QuizController controller) {
     return Obx(
       () => controller.screenState.value == 0
@@ -169,13 +172,50 @@ class QuizScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: Dimens.marginCommon,
+                    height: Dimens.marginSmall,
                   ),
                   RaisedButton(
                     color: AppColors.black,
                     onPressed: () => {Get.back()},
                     child: Text(
                       'Finish',
+                      style: TextStyle(
+                        color: AppColors.white,
+                        fontSize: Dimens.itemTextTitle,
+                      ),
+                    ),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                      Radius.circular(
+                        Dimens.borderInputMedium,
+                      ),
+                    )),
+                  ),
+                  SizedBox(
+                    height: Dimens.marginCommon,
+                  ),
+                  RaisedButton(
+                    color: AppColors.black,
+                    onPressed: () => {
+                      for (List<Question> listItem
+                          in controller.listOfListQuestion)
+                        {
+                          for (Question item in listItem)
+                            {
+                              listToPass.add(
+                                ReviewResultItemData(
+                                  answer: item.correctAnswer,
+                                  question: item.question,
+                                  explaination: item.explaination,
+                                ),
+                              )
+                            }
+                        },
+                      Get.offAndToNamed(ReviewResultScreen.routeName,
+                          arguments: ReviewResultData(listResult: listToPass))
+                    },
+                    child: Text(
+                      'View Explaination',
                       style: TextStyle(
                         color: AppColors.white,
                         fontSize: Dimens.itemTextTitle,

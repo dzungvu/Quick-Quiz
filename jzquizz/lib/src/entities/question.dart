@@ -16,7 +16,7 @@ class Question {
   final String correctAnswer;
   @JsonKey(name: 'img')
   final ImageResponse img;
-  @JsonKey(name: 'explaination')
+  @JsonKey(name: 'explain')
   final String explaination;
 
   Question({

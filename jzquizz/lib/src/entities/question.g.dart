@@ -15,7 +15,7 @@ Question _$QuestionFromJson(Map<String, dynamic> json) {
     img: json['img'] == null
         ? null
         : ImageResponse.fromJson(json['img'] as Map<String, dynamic>),
-    explaination: json['explaination'] as String,
+    explaination: json['explain'] as String,
   );
 }
 
@@ -25,5 +25,5 @@ Map<String, dynamic> _$QuestionToJson(Question instance) => <String, dynamic>{
       'answers': instance.answers,
       'correct_answer': instance.correctAnswer,
       'img': instance.img,
-      'explaination': instance.explaination,
+      'explain': instance.explaination,
     };
